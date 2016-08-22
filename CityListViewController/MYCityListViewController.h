@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MYCityListViewController.h
 //  CityListViewController
 //
 //  Created by NengQuan on 16/1/8.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MYCityListViewController : UIViewController
 
 @end
-

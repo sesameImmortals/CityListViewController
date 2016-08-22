@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MYCityListViewController.h"
+#import "UIImage+Extension.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +16,22 @@
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+    /**
+     *   navigationBar and StatusBar
+     */
+    [self configNAV];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    MYCityListViewController *cityVC = [[MYCityListViewController alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:cityVC];
+    self.window .rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -42,4 +57,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
++ (void)configNAV
+{
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    UIColor *color = [UIColor colorWithRed:235/255.0 green:94/255.0 blue:24/255.0 alpha:1.0];
+    UIImage *barBackground = [UIImage imageWithColor:color];
+    [navBar setBackgroundImage:barBackground forBarMetrics:UIBarMetricsDefault];
+    // 设置导航条阴影
+    [navBar setShadowImage:[[UIImage alloc] init]];
+    
+    
+    NSMutableDictionary *barDict = [NSMutableDictionary dictionary];
+    barDict[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    barDict[NSFontAttributeName] = [UIFont systemFontOfSize:18];
+    [navBar setTitleTextAttributes:barDict];
+}
 @end
